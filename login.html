@@ -3,108 +3,81 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Login SIASAT</title>
+    <title>Portal SIASAT - Login</title>
     <link rel="stylesheet" href="style.css" />
   </head>
-  <body>
-    <main>
-      <div class="center-box" id="page-login">
-        <div class="logo">
-          <img src="img/logo.png" alt="Logo UKSW" />
-        </div>
 
-        <h1>Portal SIASAT</h1>
-        <p class="subtitle" style="margin-bottom: 1.2rem">
-          Silakan login untuk mengakses portal akademik.
-        </p>
+  <!-- Login page mode -->
+  <body class="login-page">
+    <main>
+      <div id="page-login" class="center-box login-card">
+
+        <!-- LOGO UKSW DI ATAS -->
+        <img src="img/logo.png" class="login-logo" alt="Logo UKSW" />
+
+        <h1 class="login-title">SIASAT UKSW </h1>
+        <p class="login-subtitle">Silakan pilih untuk melanjutkan</p>
 
         <div class="form-group">
-          <label>Login sebagai</label>
-          <select
-            id="roleSelect"
-            class="form-control"
-            onchange="toggleLoginRole()"
-          >
+          <label>Login Sebagai</label>
+          <select id="roleSelect" class="form-control" onchange="toggleLoginRole()">
             <option value="mahasiswa">Mahasiswa</option>
             <option value="dosen">Dosen</option>
           </select>
         </div>
 
-        <!-- Login Mahasiswa -->
+        <!-- MAHASISWA -->
         <div id="login-mahasiswa-fields">
           <div class="form-group">
             <label>NIM</label>
-            <input
-              type="text"
-              class="form-control"
-              placeholder="Masukkan NIM"
-            />
+            <input type="text" class="form-control" placeholder="Masukkan NIM" />
           </div>
+
           <div class="form-group">
             <label>Password</label>
-            <input
-              type="password"
-              class="form-control"
-              placeholder="Masukkan password"
-            />
+            <input type="password" class="form-control" placeholder="Masukkan password" />
           </div>
-          <button class="btn btn-primary" onclick="masukMahasiswa()">
-            Masuk Mahasiswa
-          </button>
+
+          <button class="btn btn-primary" onclick="masukMahasiswa()">Masuk Mahasiswa</button>
         </div>
 
-        <!-- Login Dosen -->
+        <!-- DOSEN -->
         <div id="login-dosen-fields" class="hidden">
           <div class="form-group">
             <label>NIDN / ID Dosen</label>
-            <input
-              type="text"
-              class="form-control"
-              placeholder="Masukkan NIDN / ID"
-            />
+            <input type="text" class="form-control" placeholder="Masukkan NIDN / ID" />
           </div>
+
           <div class="form-group">
             <label>Password</label>
-            <input
-              type="password"
-              class="form-control"
-              placeholder="Masukkan password"
-            />
+            <input type="password" class="form-control" placeholder="Masukkan password" />
           </div>
-          <button class="btn btn-primary" onclick="masukDosen()">
-            Masuk Dosen
-          </button>
+
+          <button class="btn btn-primary" onclick="masukDosen()">Masuk Dosen</button>
         </div>
 
-        <p style="font-size: 0.85rem; margin-top: 1.4rem">
-          Belum punya akun? Silakan daftar melalui menu PMB.
-        </p>
-        <button
-          class="btn btn-secondary"
-          style="width: 100%; margin-top: 0.3rem"
-          onclick="bukaPMB()"
-        >
-          Pendaftaran Mahasiswa Baru (PMB)
-        </button>
+        <p class="login-helper">Belum punya akun?</p>
+        <button class="btn btn-secondary" onclick="bukaPMB()">Pendaftaran Mahasiswa Baru</button>
+
       </div>
     </main>
 
     <footer>
-      <p>&copy; 2024 SIASAT - Sistem Informasi Akademik</p>
+      <p>&copy; 2025 SIASAT - Sistem Informasi Akademik</p>
     </footer>
 
     <script>
       function toggleLoginRole() {
         const role = document.getElementById("roleSelect").value;
-        const mhs = document.getElementById("login-mahasiswa-fields");
-        const dsn = document.getElementById("login-dosen-fields");
+        const m = document.getElementById("login-mahasiswa-fields");
+        const d = document.getElementById("login-dosen-fields");
 
         if (role === "mahasiswa") {
-          mhs.classList.remove("hidden");
-          dsn.classList.add("hidden");
+          m.classList.remove("hidden");
+          d.classList.add("hidden");
         } else {
-          dsn.classList.remove("hidden");
-          mhs.classList.add("hidden");
+          d.classList.remove("hidden");
+          m.classList.add("hidden");
         }
       }
 
@@ -120,9 +93,7 @@
         window.location.href = "pmb.html";
       }
 
-      document.addEventListener("DOMContentLoaded", () => {
-        toggleLoginRole();
-      });
+      document.addEventListener("DOMContentLoaded", toggleLoginRole);
     </script>
   </body>
 </html>
