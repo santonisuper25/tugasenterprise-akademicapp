@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SIASAT - Portal Mahasiswa</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <!-- Header -->
+    <header>
+      <div class="header-content">
+        <div class="header-title">
+          <svg
+            width="32"
+            height="32"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="#e0f2fe"
+            stroke-width="1.8"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path
+              d="M12 3l8 4.5v4.5c0 5-3.5 9-8 9s-8-4-8-9V7.5L12 3z"
+            ></path>
+            <path d="M9 10l3 2 3-2"></path>
+          </svg>
+          <div>
+            <h1>SIASAT - Portal Mahasiswa</h1>
+            <p>Registrasi, Pembayaran, Penjadwalan, dan Nilai Akademik</p>
+          </div>
+        </div>
+        <div class="header-right">
+          <strong>Mahasiswa</strong>
+          <span>NIM: 842023011</span>
+          <button
+            class="btn btn-secondary"
+            style="margin-top: 0.4rem"
+            onclick="logout()"
+          >
+            Logout
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav>
+      <div class="nav-content">
+        <button class="nav-button active" onclick="showPage('home')">
+          🏠 Beranda 
+        </button>
+        <button class="nav-button" onclick="showPage('registrasi')">
+          ✓ Registrasi
+        </button>
+        <button class="nav-button" onclick="showPage('pembayaran')">
+          💰 Pembayaran
+        </button>
+        <button class="nav-button" onclick="showPage('jadwal')">
+          📅 Jadwal
+        </button>
+        <button class="nav-button" onclick="showPage('khs')">
+          📊 KHS & Transkrip
+        </button>
+      </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main>
+      <!-- HOME -->
+      <div id="page-home" class="page">
+        <div class="home-container">
+          <h1 class="home-title">Sistem Informasi Akademik</h1>
+          <p class="home-subtitle">
+            Selamat datang di Portal Akademik Mahasiswa. Kelola registrasi,
+            pembayaran, jadwal, serta pantau KHS &amp; transkrip di satu tempat.
+          </p>
+
+          <div class="menu-grid">
+            <div class="menu-card green" onclick="showPage('registrasi')">
+              <div style="font-size: 2rem; margin-bottom: 0.5rem">✓</div>
+              <div>Registrasi Semester</div>
+            </div>
+
+            <div class="menu-card orange" onclick="showPage('pembayaran')">
+              <div style="font-size: 2rem; margin-bottom: 0.5rem">💰</div>
+              <div>Pembayaran & Tagihan</div>
+            </div>
+
+            <div class="menu-card teal" onclick="showPage('jadwal')">
+              <div style="font-size: 2rem; margin-bottom: 0.5rem">📅</div>
+              <div>Jadwal Kuliah</div>
+            </div>
+
+            <div class="menu-card blue" onclick="showPage('khs')">
+              <div style="font-size: 2rem; margin-bottom: 0.5rem">📊</div>
+              <div>KHS &amp; Transkrip</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- REGISTRASI -->
+      <div id="page-registrasi" class="page hidden">
+        <h2 class="page-title" style="color: #10b981">Registrasi Semester</h2>
+
+        <div class="step-box" style="margin-bottom: 1rem">
+          <p><strong>Status Registrasi Semester:</strong> AKTIF (demo)</p>
+          <p>
+            KRS akan <strong>terkunci</strong> setelah pembayaran SPP lunas dan
+            divalidasi sistem keuangan.
+          </p>
+        </div>
+
+        <div class="form-card">
+          <h3>Daftar Mata Kuliah</h3>
+          <div class="table-container">
+            <table>
+              <thead>
+                <tr>
+                  <th>Kode</th>
+                  <th>Mata Kuliah</th>
+                  <th>SKS</th>
+                  <th>Dosen</th>
+                  <th class="text-center">Aksi</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>MK001</td>
+                  <td>Sistem Informasi</td>
+                  <td>3</td>
+                  <td>Dr. Ahmad</td>
+                  <td class="text-center">
+                    <button
+                      class="btn btn-success"
+                      onclick="alert('Mata kuliah ditambahkan ke KRS (simulasi).')"
+                    >
+                      Tambah
+                    </button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>MK002</td>
+                  <td>Basis Data</td>
+                  <td>3</td>
+                  <td>Dr. Budi</td>
+                  <td class="text-center">
+                    <button
+                      class="btn btn-success"
+                      onclick="alert('Mata kuliah ditambahkan ke KRS (simulasi).')"
+                    >
+                      Tambah
+                    </button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>MK003</td>
+                  <td>Pemrograman Web</td>
+                  <td>3</td>
+                  <td>Dr. Clara</td>
+                  <td class="text-center">
+                    <button
+                      class="btn btn-success"
+                      onclick="alert('Mata kuliah ditambahkan ke KRS (simulasi).')"
+                    >
+                      Tambah
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="form-card">
+          <h3>Ringkasan KRS</h3>
+          <p>
+            Total SKS yang diambil:
+            <strong>9 SKS</strong> (simulasi).
+          </p>
+          <p>
+            Batas maksimum SKS untuk IPK &gt;= 3.00 adalah
+            <strong>24 SKS</strong>.
+          </p>
+        </div>
+
+        <button
+          class="btn btn-secondary"
+          onclick="showPage('home')"
+          style="margin-top: 0.5rem"
+        >
+          ⬅ Kembali ke Beranda
+        </button>
+      </div>
+
+      <!-- PEMBAYARAN -->
+      <div id="page-pembayaran" class="page hidden">
+        <h2 class="page-title" style="color: #f97316">
+          Pembayaran &amp; Rekonsiliasi
+        </h2>
+
+        <div class="step-box" style="margin-bottom: 1rem">
+          <p>
+            <strong>Status Tagihan Semester:</strong> Sebagian Lunas (demo)
+          </p>
+          <p>
+            Setelah semua tagihan <strong>Lunas</strong>, status registrasi
+            tetap <strong>AKTIF</strong> dan KHS dapat diterbitkan.
+          </p>
+        </div>
+
+        <div class="form-card" style="margin-bottom: 1.5rem">
+          <h3>Daftar Tagihan</h3>
+          <div class="table-container">
+            <table>
+              <thead>
+                <tr>
+                  <th>No. Tagihan</th>
+                  <th>Keterangan</th>
+                  <th>Jumlah</th>
+                  <th>Status</th>
+                  <th class="text-center">Aksi</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>INV-2025-001</td>
+                  <td>SPP Semester Genap</td>
+                  <td>Rp 6.000.000</td>
+                  <td>
+                    <span class="badge badge-warning">Belum Lunas</span>
+                  </td>
+                  <td class="text-center">
+                    <button
+                      class="btn btn-warning"
+                      onclick="alert('Memproses pembayaran... (simulasi)')"
+                    >
+                      Bayar
+                    </button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>INV-2025-002</td>
+                  <td>Laboratorium &amp; Praktikum</td>
+                  <td>Rp 750.000</td>
+                  <td>
+                    <span class="badge badge-success">Lunas</span>
+                  </td>
+                  <td class="text-center">
+                    <button class="btn btn-secondary" disabled>
+                      Selesai
+                    </button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>INV-2025-003</td>
+                  <td>Perpustakaan</td>
+                  <td>Rp 250.000</td>
+                  <td>
+                    <span class="badge badge-success">Lunas</span>
+                  </td>
+                  <td class="text-center">
+                    <button class="btn btn-secondary" disabled>
+                      Selesai
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="form-card">
+          <h3>Informasi Rekening / Virtual Account</h3>
+          <p>Pembayaran dapat dilakukan melalui:</p>
+          <p><strong>Bank:</strong> BCA</p>
+          <p><strong>Virtual Account:</strong> 9888 842023011 01</p>
+          <p><strong>Atas Nama:</strong> Universitas Kristen Satya Wacana</p>
+        </div>
+
+        <button
+          class="btn btn-secondary"
+          onclick="showPage('home')"
+          style="margin-top: 0.5rem"
+        >
+          ⬅ Kembali ke Beranda
+        </button>
+      </div>
+
+      <!-- JADWAL -->
+      <div id="page-jadwal" class="page hidden">
+        <h2 class="page-title" style="color: #14b8a6">
+          Jadwal Perkuliahan
+        </h2>
+
+        <div class="form-card">
+          <h3>Jadwal Kuliah Mingguan</h3>
+          <div class="table-container">
+            <table>
+              <thead>
+                <tr>
+                  <th>Hari</th>
+                  <th>Waktu</th>
+                  <th>Mata Kuliah</th>
+                  <th>Ruangan</th>
+                  <th>Dosen</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Senin</td>
+                  <td>08:00 - 10:00</td>
+                  <td>Sistem Informasi</td>
+                  <td>F-301</td>
+                  <td>Dr. Ahmad</td>
+                </tr>
+                <tr>
+                  <td>Rabu</td>
+                  <td>10:00 - 12:00</td>
+                  <td>Basis Data</td>
+                  <td>F-302</td>
+                  <td>Dr. Budi</td>
+                </tr>
+                <tr>
+                  <td>Jumat</td>
+                  <td>13:00 - 15:00</td>
+                  <td>Pemrograman Web</td>
+                  <td>F-305</td>
+                  <td>Dr. Clara</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="form-card">
+          <h3>Catatan Penjadwalan</h3>
+          <p>
+            Sistem akan otomatis menolak mata kuliah yang menyebabkan
+            <strong>bentrok jadwal</strong> dengan jadwal yang sudah tersimpan
+            di KRS.
+          </p>
+        </div>
+
+        <button
+          class="btn btn-secondary"
+          onclick="showPage('home')"
+          style="margin-top: 0.5rem"
+        >
+          ⬅ Kembali ke Beranda
+        </button>
+      </div>
+
+      <!-- KHS & TRANSKRIP -->
+      <div id="page-khs" class="page hidden">
+        <h2 class="page-title" style="color: #06b6d4">
+          KHS &amp; Transkrip (Demo)
+        </h2>
+
+        <div class="form-card" style="margin-bottom: 1.5rem">
+          <h3>Ringkasan IPK</h3>
+          <div class="step-box">
+            <p><strong>Status Registrasi:</strong> AKTIF (demo)</p>
+            <p><strong>IPK Kumulatif:</strong> 3,65</p>
+            <p><strong>Total SKS Lulus:</strong> 96 SKS</p>
+          </div>
+        </div>
+
+        <div class="form-card">
+          <h3>KHS Semester Terakhir</h3>
+          <div class="table-container">
+            <table>
+              <thead>
+                <tr>
+                  <th>Kode MK</th>
+                  <th>Mata Kuliah</th>
+                  <th>SKS</th>
+                  <th>Nilai</th>
+                  <th>Mutu</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>MK001</td>
+                  <td>Sistem Informasi</td>
+                  <td>3</td>
+                  <td>A</td>
+                  <td>4,00</td>
+                </tr>
+                <tr>
+                  <td>MK002</td>
+                  <td>Basis Data</td>
+                  <td>3</td>
+                  <td>AB</td>
+                  <td>3,50</td>
+                </tr>
+                <tr>
+                  <td>MK003</td>
+                  <td>Pemrograman Web</td>
+                  <td>3</td>
+                  <td>A</td>
+                  <td>4,00</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <button
+          class="btn btn-secondary"
+          onclick="showPage('home')"
+          style="margin-top: 0.5rem"
+        >
+          ⬅ Kembali ke Beranda
+        </button>
+      </div>
+    </main>
+
+    <footer>
+      <p>
+        Simulasi Tugas Akhir - SIASAT UKSW | Mahasiswa demo: Steven, Yonathan,
+        Eka, Steffen, William
+      </p>
+    </footer>
+
+    <script>
+      function showPage(pageName) {
+        // Hide all pages
+        const pages = document.querySelectorAll(".page");
+        pages.forEach((page) => page.classList.add("hidden"));
+
+        // Show selected page
+        document.getElementById("page-" + pageName).classList.remove("hidden");
+
+        // Update nav
+        const navButtons = document.querySelectorAll(".nav-button");
+        navButtons.forEach((btn) => btn.classList.remove("active"));
+        const activeBtn = Array.from(navButtons).find((btn) =>
+          btn.getAttribute("onclick").includes("'" + pageName + "'")
+        );
+        if (activeBtn) activeBtn.classList.add("active");
+
+        window.scrollTo(0, 0);
+      }
+
+      document.addEventListener("DOMContentLoaded", () => {
+        showPage("home");
+      });
+
+      function logout() {
+        window.location.href = "login.html";
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SIASAT - Portal Dosen</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <!-- Header -->
+    <header>
+      <div class="header-content">
+        <div class="header-title">
+          <svg
+            width="32"
+            height="32"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="#e0f2fe"
+            stroke-width="1.8"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="M4 19h16"></path>
+            <path d="M10 17v-3"></path>
+            <path d="M14 17v-3"></path>
+            <path
+              d="M5 10a7 7 0 0 1 14 0v3H5z"
+            ></path>
+          </svg>
+          <div>
+            <h1>SIASAT - Portal Dosen</h1>
+            <p>Input Nilai Ujian &amp; Monitoring Akademik Mahasiswa</p>
+          </div>
+        </div>
+        <div class="header-right">
+          <strong>Dosen</strong>
+          <span>Dr. Ahmad</span>
+          <button
+            class="btn btn-secondary"
+            style="margin-top: 0.4rem"
+            onclick="logout()"
+          >
+            Logout
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav>
+      <div class="nav-content">
+        <button class="nav-button active" onclick="showPage('home')">
+          🏠 Home
+        </button>
+        <button class="nav-button" onclick="showPage('nilai')">
+          📝 Input Nilai
+        </button>
+        <button class="nav-button" onclick="showPage('rekap')">
+          📊 Rekap Nilai
+        </button>
+        <button class="nav-button" onclick="showPage('jadwal')">
+          📅 Jadwal Mengajar
+        </button>
+        <button class="nav-button" onclick="showPage('pengumuman')">
+          📢 Pengumuman
+        </button>
+      </div>
+    </nav>
+
+    <main>
+      <!-- HOME -->
+      <div id="page-home" class="page">
+        <div class="home-container">
+          <h1 class="home-title">Selamat Datang, Dosen</h1>
+          <p class="home-subtitle">
+            Melalui portal ini, dosen dapat mengelola nilai ujian, melihat
+            rekapitulasi nilai, jadwal mengajar, dan pengumuman akademik.
+          </p>
+
+          <div class="menu-grid">
+            <div class="menu-card green" onclick="showPage('nilai')">
+              <div style="font-size: 2rem; margin-bottom: 0.5rem">📝</div>
+              <div>Input Nilai Ujian</div>
+            </div>
+            <div class="menu-card blue" onclick="showPage('rekap')">
+              <div style="font-size: 2rem; margin-bottom: 0.5rem">📊</div>
+              <div>Rekap Nilai</div>
+            </div>
+            <div class="menu-card teal" onclick="showPage('jadwal')">
+              <div style="font-size: 2rem; margin-bottom: 0.5rem">📅</div>
+              <div>Jadwal Mengajar</div>
+            </div>
+            <div class="menu-card orange" onclick="showPage('pengumuman')">
+              <div style="font-size: 2rem; margin-bottom: 0.5rem">📢</div>
+              <div>Pengumuman</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- INPUT NILAI -->
+      <div id="page-nilai" class="page hidden">
+        <h2 class="page-title" style="color: #60a5fa">
+          Input Nilai Ujian
+        </h2>
+
+        <div class="form-card">
+          <h3>Daftar Mahasiswa</h3>
+          <div class="table-container">
+            <table>
+              <thead>
+                <tr>
+                  <th>NIM</th>
+                  <th>Nama</th>
+                  <th>Mata Kuliah</th>
+                  <th>Nilai UTS</th>
+                  <th>Nilai UAS</th>
+                  <th class="text-center">Aksi</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>842023011</td>
+                  <td>Steven</td>
+                  <td>Sistem Informasi</td>
+                  <td>
+                    <input
+                      type="number"
+                      class="form-control"
+                      style="max-width: 80px"
+                      value="80"
+                    />
+                  </td>
+                  <td>
+                    <input
+                      type="number"
+                      class="form-control"
+                      style="max-width: 80px"
+                      value="85"
+                    />
+                  </td>
+                  <td class="text-center">
+                    <button
+                      class="btn btn-success"
+                      onclick="saveNilai('842023011')"
+                    >
+                      Simpan
+                    </button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>842023012</td>
+                  <td>Yonathan</td>
+                  <td>Basis Data</td>
+                  <td>
+                    <input
+                      type="number"
+                      class="form-control"
+                      style="max-width: 80px"
+                      value="78"
+                    />
+                  </td>
+                  <td>
+                    <input
+                      type="number"
+                      class="form-control"
+                      style="max-width: 80px"
+                      value="82"
+                    />
+                  </td>
+                  <td class="text-center">
+                    <button
+                      class="btn btn-success"
+                      onclick="saveNilai('842023012')"
+                    >
+                      Simpan
+                    </button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>842023013</td>
+                  <td>Eka</td>
+                  <td>Pemrograman Web</td>
+                  <td>
+                    <input
+                      type="number"
+                      class="form-control"
+                      style="max-width: 80px"
+                      value="88"
+                    />
+                  </td>
+                  <td>
+                    <input
+                      type="number"
+                      class="form-control"
+                      style="max-width: 80px"
+                      value="90"
+                    />
+                  </td>
+                  <td class="text-center">
+                    <button
+                      class="btn btn-success"
+                      onclick="saveNilai('842023013')"
+                    >
+                      Simpan
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <button
+          class="btn btn-secondary"
+          onclick="showPage('home')"
+          style="margin-top: 0.5rem"
+        >
+          ⬅ Kembali ke Beranda
+        </button>
+      </div>
+
+      <!-- REKAP NILAI -->
+      <div id="page-rekap" class="page hidden">
+        <h2 class="page-title" style="color: #38bdf8">
+          Rekap Nilai Mahasiswa
+        </h2>
+
+        <div class="form-card">
+          <h3>Ringkasan Nilai</h3>
+          <div class="table-container">
+            <table>
+              <thead>
+                <tr>
+                  <th>NIM</th>
+                  <th>Nama</th>
+                  <th>Mata Kuliah</th>
+                  <th>Nilai Akhir</th>
+                  <th>Grade</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>842023011</td>
+                  <td>Steven</td>
+                  <td>Sistem Informasi</td>
+                  <td>83</td>
+                  <td>A-</td>
+                </tr>
+                <tr>
+                  <td>842023012</td>
+                  <td>Yonathan</td>
+                  <td>Basis Data</td>
+                  <td>80</td>
+                  <td>B+</td>
+                </tr>
+                <tr>
+                  <td>842023013</td>
+                  <td>Eka</td>
+                  <td>Pemrograman Web</td>
+                  <td>89</td>
+                  <td>A</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <button
+          class="btn btn-secondary"
+          onclick="showPage('home')"
+          style="margin-top: 0.5rem"
+        >
+          ⬅ Kembali ke Beranda
+        </button>
+      </div>
+
+      <!-- JADWAL MENGAJAR -->
+      <div id="page-jadwal" class="page hidden">
+        <h2 class="page-title" style="color: #4ade80">
+          Jadwal Mengajar
+        </h2>
+
+        <div class="form-card">
+          <h3>Jadwal Mingguan</h3>
+          <div class="table-container">
+            <table>
+              <thead>
+                <tr>
+                  <th>Hari</th>
+                  <th>Waktu</th>
+                  <th>Mata Kuliah</th>
+                  <th>Ruangan</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Senin</td>
+                  <td>08:00 - 10:00</td>
+                  <td>Sistem Informasi</td>
+                  <td>F-301</td>
+                </tr>
+                <tr>
+                  <td>Selasa</td>
+                  <td>13:00 - 15:00</td>
+                  <td>Basis Data</td>
+                  <td>F-302</td>
+                </tr>
+                <tr>
+                  <td>Kamis</td>
+                  <td>10:00 - 12:00</td>
+                  <td>Pemrograman Web</td>
+                  <td>F-305</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <button
+          class="btn btn-secondary"
+          onclick="showPage('home')"
+          style="margin-top: 0.5rem"
+        >
+          ⬅ Kembali ke Beranda
+        </button>
+      </div>
+
+      <!-- PENGUMUMAN -->
+      <div id="page-pengumuman" class="page hidden">
+        <h2 class="page-title" style="color: #facc15">
+          Pengumuman Akademik
+        </h2>
+
+        <div class="form-card">
+          <h3>Pengumuman Terbaru</h3>
+          <ul style="padding-left: 1.25rem; font-size: 0.95rem">
+            <li style="margin-bottom: 0.4rem">
+              Batas akhir pengisian nilai UAS: 30 Januari 2025.
+            </li>
+            <li style="margin-bottom: 0.4rem">
+              Sistem akan terkunci untuk perubahan nilai setelah tanggal
+              tersebut.
+            </li>
+            <li>
+              Rapat dosen persiapan semester baru: 5 Februari 2025 di ruang
+              Senat.
+            </li>
+          </ul>
+        </div>
+
+        <button
+          class="btn btn-secondary"
+          onclick="showPage('home')"
+          style="margin-top: 0.5rem"
+        >
+          ⬅ Kembali ke Beranda
+        </button>
+      </div>
+    </main>
+
+    <footer>
+      <p>Portal Dosen - SIASAT UKSW | Simulasi Tugas Akhir Kelompok D</p>
+    </footer>
+
+    <script>
+      function showPage(pageName) {
+        const pages = document.querySelectorAll(".page");
+        pages.forEach((page) => page.classList.add("hidden"));
+
+        const target = document.getElementById("page-" + pageName);
+        if (target) target.classList.remove("hidden");
+
+        const navButtons = document.querySelectorAll(".nav-button");
+        navButtons.forEach((btn) => btn.classList.remove("active"));
+
+        const activeBtn = Array.from(navButtons).find((btn) =>
+          btn.getAttribute("onclick").includes("'" + pageName + "'")
+        );
+        if (activeBtn) activeBtn.classList.add("active");
+
+        window.scrollTo(0, 0);
+      }
+
+      document.addEventListener("DOMContentLoaded", () => {
+        showPage("home");
+      });
+
+      function logout() {
+        window.location.href = "login.html";
+      }
+
+      function saveNilai(nim) {
+        alert("Nilai untuk NIM " + nim + " berhasil disimpan (simulasi).");
+      }
+    </script>
+  </body>
+</html>
