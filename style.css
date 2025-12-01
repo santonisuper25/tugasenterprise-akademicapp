@@ -1,4 +1,6 @@
-/* ============ RESET & GLOBAL ============ */
+/* =======================================
+   RESET & GLOBAL
+======================================= */
 * {
   margin: 0;
   padding: 0;
@@ -6,22 +8,22 @@
 }
 
 :root {
-  --primary: #8b5cf6;
-  --primary-dark: #7c3aed;
-  --secondary: #ec4899;
-  --accent: #f59e0b;
+  --primary: #06b6d4;
+  --primary-dark: #0e7490;
+  --secondary: #3b82f6;
+  --accent: #f97316;
   --success: #10b981;
   --danger: #ef4444;
-  --bg-dark: #0f172a;
-  --bg-card: #1e293b;
-  --border: #334155;
-  --text-main: #f8fafc;
+  --bg-dark: #020617;
+  --bg-card: #0b1220;
+  --text-main: #f9fafb;
   --text-soft: #cbd5e1;
-  --glow-purple: rgba(139, 92, 246, 0.4);
-  --glow-pink: rgba(236, 72, 153, 0.4);
+  --border-soft: #1f2937;
+  --glow-primary: rgba(6, 182, 212, 0.4);
+  --glow-secondary: rgba(59, 130, 246, 0.4);
 }
 
-/* Background dengan animated gradient */
+/* ============ ANIMATED BACKGROUND ============ */
 @keyframes gradientShift {
   0% {
     background-position: 0% 50%;
@@ -35,32 +37,36 @@
 }
 
 body {
-  font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
+  font-family: "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
   min-height: 100vh;
   background: linear-gradient(
     -45deg,
+    #020617,
     #0f172a,
-    #1e1b4b,
-    #312e81,
-    #1e293b
+    #0369a1,
+    #0ea5e9
   );
   background-size: 400% 400%;
-  animation: gradientShift 15s ease infinite;
+  animation: gradientShift 18s ease infinite;
   color: var(--text-main);
   overflow-x: hidden;
 }
 
-/* Particle effect overlay */
+/* Particle overlay ringan */
 body::before {
-  content: '';
+  content: "";
   position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-image: 
-    radial-gradient(circle at 20% 50%, rgba(139, 92, 246, 0.1) 0%, transparent 50%),
-    radial-gradient(circle at 80% 80%, rgba(236, 72, 153, 0.1) 0%, transparent 50%);
+  inset: 0;
+  background-image: radial-gradient(
+      circle at 20% 50%,
+      rgba(56, 189, 248, 0.14) 0%,
+      transparent 55%
+    ),
+    radial-gradient(
+      circle at 80% 80%,
+      rgba(37, 99, 235, 0.14) 0%,
+      transparent 55%
+    );
   pointer-events: none;
   z-index: 0;
 }
@@ -74,122 +80,196 @@ body::before {
   text-align: center;
 }
 
-/* ============ GLASSMORPHISM CONTAINERS ============ */
-.center-box {
-  max-width: 440px;
-  margin: 4rem auto;
-  padding: 2.5rem 2rem;
-  border-radius: 24px;
-  background: rgba(30, 41, 59, 0.7);
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: rgba(15, 23, 42, 0.75);
+}
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(135deg, var(--primary), var(--secondary));
+  border-radius: 4px;
+}
+
+/* =======================================
+   GLASS CARD UMUM
+======================================= */
+.center-box,
+.form-card,
+.step-box,
+.login-card {
+  background: rgba(15, 23, 42, 0.92);
   backdrop-filter: blur(20px) saturate(180%);
-  border: 1px solid rgba(148, 163, 184, 0.2);
-  box-shadow: 
-    0 8px 32px rgba(0, 0, 0, 0.4),
-    inset 0 1px 0 rgba(255, 255, 255, 0.1);
-  text-align: center;
-  color: var(--text-main);
+  border-radius: 20px;
+  border: 1px solid rgba(148, 163, 184, 0.35);
+  box-shadow:
+    0 14px 40px rgba(15, 23, 42, 0.96),
+    0 0 22px var(--glow-primary);
   position: relative;
-  overflow: hidden;
   z-index: 1;
 }
 
-/* Animated border glow */
+/* posisi center untuk box kecil (login, pmb step) */
+.center-box {
+  max-width: 440px;
+  margin: 4rem auto;
+  padding: 2.4rem 2rem;
+}
+
+/* Animated border glow (dari CSS kamu) */
 @keyframes borderGlow {
-  0%, 100% {
-    box-shadow: 
-      0 8px 32px rgba(0, 0, 0, 0.4),
-      0 0 20px var(--glow-purple),
-      inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  0%,
+  100% {
+    box-shadow:
+      0 14px 40px rgba(15, 23, 42, 0.96),
+      0 0 22px var(--glow-primary),
+      inset 0 1px 0 rgba(255, 255, 255, 0.06);
   }
   50% {
-    box-shadow: 
-      0 8px 32px rgba(0, 0, 0, 0.4),
-      0 0 30px var(--glow-pink),
+    box-shadow:
+      0 14px 40px rgba(15, 23, 42, 0.96),
+      0 0 30px var(--glow-secondary),
       inset 0 1px 0 rgba(255, 255, 255, 0.1);
   }
 }
 
-.center-box:hover {
+.center-box:hover,
+.form-card:hover {
   animation: borderGlow 3s ease-in-out infinite;
 }
 
+/* Logo umum (misal di pmb step) */
 .logo {
-  width: 80px;
-  height: 80px;
-  margin: 0 auto 1.5rem;
-  filter: drop-shadow(0 4px 12px rgba(139, 92, 246, 0.5));
-  transition: transform 0.3s ease, filter 0.3s ease;
+  width: 72px;
+  height: 72px;
+  display: block;
+  margin: 0 auto 1.4rem;
+  object-fit: contain;
+  filter: drop-shadow(0 4px 14px rgba(59, 130, 246, 0.7));
 }
 
-.logo:hover {
-  transform: scale(1.1) rotate(5deg);
-  filter: drop-shadow(0 8px 20px rgba(236, 72, 153, 0.6));
+/* =======================================
+   LOGIN PAGE (body.login-page)
+======================================= */
+
+body.login-page {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
 
-/* Headings with gradient text */
-h1, h2, h3 {
-  background: linear-gradient(135deg, #a78bfa, #ec4899, #f59e0b);
+.login-card {
+  max-width: 440px;
+  margin: 4.5rem auto 3rem;
+  padding: 2.5rem 2rem;
+  text-align: center;
+}
+
+/* Logo di atas form login */
+.login-logo {
+  width: 90px;
+  height: 90px;
+  margin-bottom: 1rem;
+  object-fit: contain;
+  filter: drop-shadow(0 6px 20px rgba(56, 189, 248, 0.9));
+  animation: logoFloat 4s ease-in-out infinite;
+}
+
+/* animasi float (adaptasi cardFloat) */
+@keyframes logoFloat {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+/* Judul login dengan gradient */
+.login-title {
+  font-size: 2rem;
+  margin-bottom: 0.4rem;
+  background: linear-gradient(135deg, #22d3ee, #3b82f6);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  background-clip: text;
+}
+
+.login-subtitle {
+  font-size: 0.9rem;
+  color: var(--text-soft);
+  margin-bottom: 1.6rem;
+}
+
+.login-helper {
+  margin-top: 1rem;
+  font-size: 0.82rem;
+  color: var(--text-soft);
+}
+
+/* footer login tidak nempel terlalu dekat */
+body.login-page footer {
+  margin-top: auto;
+}
+
+/* =======================================
+   HEADINGS GLOBAL
+======================================= */
+h1,
+h2,
+h3 {
   font-weight: 700;
   letter-spacing: -0.02em;
 }
 
-h1 {
-  font-size: 1.75rem;
-  margin-bottom: 0.5rem;
-}
-
-h2.page-title {
-  font-size: 1.5rem;
-  margin-bottom: 1.5rem;
-}
-
-.title {
-  font-size: 1.75rem;
-  margin-bottom: 0.5rem;
+.page-title {
+  font-size: 1.6rem;
+  margin-bottom: 0.8rem;
 }
 
 .subtitle {
+  font-size: 0.9rem;
   color: var(--text-soft);
-  margin-bottom: 2rem;
-  font-size: 0.95rem;
+  margin-bottom: 1.4rem;
 }
 
-/* ============ FORM ELEMENTS ============ */
+/* =======================================
+   FORM ELEMENTS
+======================================= */
 .form-group {
-  margin-bottom: 1.25rem;
+  margin-bottom: 1.1rem;
   text-align: left;
 }
 
 .form-group label {
   display: block;
-  margin-bottom: 0.5rem;
-  font-size: 0.9rem;
-  font-weight: 500;
-  color: var(--text-main);
+  margin-bottom: 0.45rem;
+  font-size: 0.86rem;
+  font-weight: 600;
   text-transform: uppercase;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.06em;
+  color: var(--text-main);
 }
 
 .form-control,
 select.form-control {
   width: 100%;
-  padding: 0.875rem 1rem;
+  padding: 0.8rem 1rem;
   border-radius: 12px;
-  border: 2px solid rgba(148, 163, 184, 0.2);
-  background: rgba(15, 23, 42, 0.6);
-  backdrop-filter: blur(10px);
+  border: 2px solid rgba(148, 163, 184, 0.25);
+  background: rgba(15, 23, 42, 0.9);
   color: var(--text-main);
   font-size: 0.95rem;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all 0.25s ease;
 }
 
 .form-control::placeholder {
-  color: rgba(203, 213, 225, 0.5);
+  color: rgba(148, 163, 184, 0.7);
 }
 
+/* animasi fokus input (dari CSS kamu) */
 @keyframes inputFocus {
   0% {
     transform: scale(1);
@@ -205,36 +285,39 @@ select.form-control {
 .form-control:focus {
   outline: none;
   border-color: var(--primary);
-  background: rgba(15, 23, 42, 0.8);
-  box-shadow: 
-    0 0 0 4px var(--glow-purple),
-    0 4px 12px rgba(139, 92, 246, 0.3);
-  animation: inputFocus 0.3s ease;
+  background: #020617;
+  box-shadow:
+    0 0 0 4px rgba(56, 189, 248, 0.3),
+    0 4px 14px rgba(15, 23, 42, 0.9);
+  animation: inputFocus 0.25s ease;
 }
 
-/* ============ MODERN BUTTONS ============ */
+/* =======================================
+   BUTTONS (dengan ripple dari CSS kamu)
+======================================= */
 .btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 0.875rem 1.75rem;
+  width: 100%;
+  padding: 0.85rem 1.6rem;
   border-radius: 12px;
   border: none;
-  font-size: 0.95rem;
+  font-size: 0.9rem;
   font-weight: 600;
   cursor: pointer;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
   position: relative;
   overflow: hidden;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
+  transition: all 0.24s ease;
 }
 
 /* Ripple effect */
 @keyframes ripple {
   0% {
     transform: scale(0);
-    opacity: 1;
+    opacity: 0.7;
   }
   100% {
     transform: scale(4);
@@ -243,7 +326,7 @@ select.form-control {
 }
 
 .btn::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 50%;
   left: 50%;
@@ -252,275 +335,285 @@ select.form-control {
   border-radius: 50%;
   background: rgba(255, 255, 255, 0.5);
   transform: translate(-50%, -50%);
-  transition: width 0.6s, height 0.6s;
 }
 
 .btn:active::before {
-  width: 300px;
-  height: 300px;
+  width: 260px;
+  height: 260px;
   animation: ripple 0.6s ease-out;
 }
 
 .btn:disabled {
-  opacity: 0.5;
+  opacity: 0.55;
   cursor: not-allowed;
-  transform: none !important;
 }
 
 .btn:not(:disabled):hover {
   transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.9);
 }
 
-.btn:not(:disabled):active {
-  transform: translateY(0);
-}
-
+/* warna tombol */
 .btn-primary {
-  background: linear-gradient(135deg, #8b5cf6, #7c3aed, #6d28d9);
-  color: white;
-  box-shadow: 0 4px 16px var(--glow-purple);
-  width: 100%;
+  background: linear-gradient(135deg, #06b6d4, #0ea5e9, #3b82f6);
+  color: #fff;
 }
 
 .btn-primary:hover {
-  background: linear-gradient(135deg, #a78bfa, #8b5cf6, #7c3aed);
-  box-shadow: 0 8px 24px var(--glow-purple);
-}
-
-.btn-success {
-  background: linear-gradient(135deg, #10b981, #059669);
-  color: white;
-  box-shadow: 0 4px 16px rgba(16, 185, 129, 0.4);
-}
-
-.btn-success:hover {
-  background: linear-gradient(135deg, #34d399, #10b981);
-  box-shadow: 0 8px 24px rgba(16, 185, 129, 0.5);
-}
-
-.btn-warning {
-  background: linear-gradient(135deg, #f59e0b, #d97706);
-  color: white;
-  box-shadow: 0 4px 16px rgba(245, 158, 11, 0.4);
-}
-
-.btn-warning:hover {
-  background: linear-gradient(135deg, #fbbf24, #f59e0b);
-  box-shadow: 0 8px 24px rgba(245, 158, 11, 0.5);
+  background: linear-gradient(135deg, #22d3ee, #38bdf8, #2563eb);
 }
 
 .btn-secondary {
   background: linear-gradient(135deg, #64748b, #475569);
-  color: white;
+  color: #fff;
+}
+
+.btn-warning {
+  background: linear-gradient(135deg, #f97316, #ea580b);
+  color: #fff;
+}
+
+.btn-success {
+  background: linear-gradient(135deg, #10b981, #059669);
+  color: #fff;
 }
 
 .btn-danger {
-  background: linear-gradient(135deg, #ef4444, #dc2626);
-  color: white;
-  box-shadow: 0 4px 16px rgba(239, 68, 68, 0.4);
+  background: linear-gradient(135deg, #ef4444, #b91c1c);
+  color: #fff;
 }
 
-.btn-danger:hover {
-  background: linear-gradient(135deg, #f87171, #ef4444);
-}
-
-/* ============ HEADER & NAV ============ */
+/* =======================================
+   HEADER (main, dosen, pmb)
+======================================= */
 header {
-  background: rgba(30, 41, 59, 0.8);
-  backdrop-filter: blur(20px) saturate(180%);
-  color: white;
-  padding: 1.25rem 0;
-  box-shadow: 
-    0 4px 24px rgba(0, 0, 0, 0.4),
-    inset 0 -1px 0 rgba(148, 163, 184, 0.2);
+  background: rgba(15, 23, 42, 0.95);
+  backdrop-filter: blur(18px);
+  border-bottom: 1px solid rgba(56, 189, 248, 0.35);
   position: sticky;
   top: 0;
-  z-index: 100;
-  border-bottom: 1px solid rgba(139, 92, 246, 0.3);
+  z-index: 40;
+  box-shadow:
+    0 8px 28px rgba(15, 23, 42, 0.96),
+    0 0 12px rgba(15, 23, 42, 0.9);
 }
 
 .header-content {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 1.5rem;
+  padding: 0.9rem 1.5rem;
   display: flex;
   align-items: center;
+  justify-content: space-between;
+  gap: 1.2rem;
 }
 
 .header-title {
   display: flex;
   align-items: center;
-  gap: 1rem;
-  flex: 1;
-}
-
-.header-title svg {
-  filter: drop-shadow(0 2px 8px var(--glow-purple));
+  gap: 0.9rem;
 }
 
 .header-title h1 {
-  font-size: 1.25rem;
-  letter-spacing: 0.02em;
-  background: linear-gradient(135deg, #a78bfa, #ec4899);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  font-size: 1.2rem;
 }
 
 .header-title p {
-  margin: 0;
+  font-size: 0.8rem;
   color: var(--text-soft);
-  font-size: 0.85rem;
 }
 
-/* Navigation dengan hover effects */
+.header-right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.15rem;
+  font-size: 0.8rem;
+  color: var(--text-soft);
+}
+
+/* =======================================
+   NAVBAR (main & dosen)
+======================================= */
 nav {
-  background: rgba(15, 23, 42, 0.8);
-  backdrop-filter: blur(20px);
-  border-bottom: 1px solid rgba(148, 163, 184, 0.1);
+  background: rgba(15, 23, 42, 0.9);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(148, 163, 184, 0.35);
 }
 
 .nav-content {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 1rem;
+  padding: 0.6rem 1.5rem;
   display: flex;
   gap: 0.5rem;
   overflow-x: auto;
 }
 
-@keyframes slideIn {
-  from {
-    transform: translateX(-10px);
-    opacity: 0;
-  }
-  to {
-    transform: translateX(0);
-    opacity: 1;
-  }
-}
-
+/* nav button dengan efek garis bawah */
 .nav-button {
-  padding: 1rem 1.5rem;
+  padding: 0.8rem 1.4rem;
+  border-radius: 999px;
   border: none;
   background: transparent;
-  cursor: pointer;
-  font-weight: 600;
-  font-size: 0.9rem;
   color: var(--text-soft);
-  border-radius: 12px;
-  margin: 0.5rem 0;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  font-size: 0.86rem;
+  font-weight: 600;
+  cursor: pointer;
   position: relative;
-  overflow: hidden;
+  white-space: nowrap;
+  transition: all 0.22s ease;
 }
 
 .nav-button::before {
-  content: '';
+  content: "";
   position: absolute;
-  bottom: 0;
+  bottom: 5px;
   left: 50%;
   width: 0;
   height: 3px;
-  background: linear-gradient(90deg, var(--primary), var(--secondary));
+  border-radius: 999px;
   transform: translateX(-50%);
-  transition: width 0.3s ease;
-  border-radius: 2px;
+  background: linear-gradient(90deg, var(--primary), var(--secondary));
+  transition: width 0.25s ease;
 }
 
 .nav-button:hover {
-  background: rgba(139, 92, 246, 0.1);
+  background: rgba(15, 23, 42, 0.9);
   color: var(--text-main);
-  transform: translateY(-2px);
+  transform: translateY(-1px);
 }
 
 .nav-button:hover::before {
-  width: 80%;
+  width: 70%;
 }
 
 .nav-button.active {
-  background: linear-gradient(135deg, rgba(139, 92, 246, 0.2), rgba(236, 72, 153, 0.2));
+  background: linear-gradient(
+    135deg,
+    rgba(6, 182, 212, 0.22),
+    rgba(59, 130, 246, 0.22)
+  );
   color: var(--text-main);
-  box-shadow: 
-    0 4px 12px var(--glow-purple),
-    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  box-shadow:
+    0 4px 14px rgba(15, 23, 42, 0.96),
+    0 0 12px var(--glow-primary);
 }
 
 .nav-button.active::before {
   width: 100%;
 }
 
-/* ============ MAIN LAYOUT ============ */
+/* =======================================
+   MAIN LAYOUT
+======================================= */
 main {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 2.5rem 1.5rem 4rem;
+  padding: 2.2rem 1.5rem 4rem;
   position: relative;
   z-index: 1;
 }
 
-/* Home container dengan animasi */
+/* halaman-halaman di main/dosen */
+.page {
+  display: none;
+}
+.page:not(.hidden) {
+  display: block;
+}
+
+/* animasi fadeInUp (dari CSS kamu) */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.page > * {
+  animation: fadeInUp 0.45s ease backwards;
+}
+.page > *:nth-child(1) {
+  animation-delay: 0.06s;
+}
+.page > *:nth-child(2) {
+  animation-delay: 0.12s;
+}
+.page > *:nth-child(3) {
+  animation-delay: 0.18s;
+}
+.page > *:nth-child(4) {
+  animation-delay: 0.24s;
+}
+
+/* =======================================
+   HOME / DASHBOARD
+======================================= */
 .home-container {
-  margin-bottom: 2rem;
+  max-width: 900px;
+  margin: 0 auto 2rem;
 }
 
 .home-title {
-  font-size: 2.5rem;
+  font-size: 2rem;
   text-align: center;
-  margin-bottom: 1rem;
-  animation: slideIn 0.6s ease;
+  margin-bottom: 0.7rem;
 }
 
 .home-subtitle {
   text-align: center;
+  font-size: 0.95rem;
   color: var(--text-soft);
-  font-size: 1.1rem;
-  margin-bottom: 2.5rem;
-  animation: slideIn 0.6s ease 0.1s backwards;
+  margin-bottom: 2rem;
 }
 
-/* Menu Grid dengan staggered animation */
+/* grid menu */
 .menu-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 1.5rem;
-  margin-top: 2rem;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 1.4rem;
 }
 
+/* cardFloat diambil dari CSS kamu */
 @keyframes cardFloat {
-  0%, 100% {
+  0%,
+  100% {
     transform: translateY(0);
   }
   50% {
-    transform: translateY(-10px);
+    transform: translateY(-6px);
   }
 }
 
+/* card menu utama */
 .menu-card {
-  min-height: 140px;
-  border-radius: 20px;
-  padding: 1.5rem;
-  color: white;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: flex-end;
+  border-radius: 18px;
+  padding: 1.4rem;
+  color: #fff;
   cursor: pointer;
+  box-shadow: 0 12px 30px rgba(15, 23, 42, 0.96);
+  transition: all 0.3s ease;
   position: relative;
   overflow: hidden;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .menu-card::before {
-  content: '';
+  content: "";
   position: absolute;
-  top: -50%;
-  right: -50%;
-  width: 200%;
-  height: 200%;
-  background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+  top: -40%;
+  right: -40%;
+  width: 180%;
+  height: 180%;
+  background: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 0.15) 0%,
+    transparent 70%
+  );
   transform: scale(0);
   transition: transform 0.6s ease;
 }
@@ -530,60 +623,51 @@ main {
 }
 
 .menu-card:hover {
-  transform: translateY(-8px) scale(1.02);
-  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.6);
-  animation: cardFloat 2s ease-in-out infinite;
+  transform: translateY(-8px) scale(1.01);
+  box-shadow: 0 18px 50px rgba(15, 23, 42, 1);
+  animation: cardFloat 2.2s ease-in-out infinite;
 }
 
+/* warna card menu */
 .menu-card.green {
   background: linear-gradient(135deg, #10b981, #059669, #047857);
 }
-
 .menu-card.teal {
   background: linear-gradient(135deg, #14b8a6, #0d9488, #0f766e);
 }
-
-.menu-card.purple {
-  background: linear-gradient(135deg, #8b5cf6, #7c3aed, #6d28d9);
-}
-
 .menu-card.orange {
-  background: linear-gradient(135deg, #f59e0b, #d97706, #b45309);
+  background: linear-gradient(135deg, #f97316, #ea580b, #c2410c);
 }
-
 .menu-card.blue {
   background: linear-gradient(135deg, #3b82f6, #2563eb, #1d4ed8);
 }
-
-/* ============ FORM CARDS ============ */
-.form-card {
-  background: rgba(30, 41, 59, 0.7);
-  backdrop-filter: blur(20px) saturate(180%);
-  color: var(--text-main);
-  padding: 2rem 1.75rem;
-  border-radius: 20px;
-  box-shadow: 
-    0 8px 32px rgba(0, 0, 0, 0.4),
-    inset 0 1px 0 rgba(255, 255, 255, 0.1);
-  border: 1px solid rgba(148, 163, 184, 0.2);
-  margin-bottom: 2rem;
-  transition: all 0.3s ease;
+.menu-card.purple {
+  background: linear-gradient(135deg, #6366f1, #4f46e5, #4338ca);
 }
 
-.form-card:hover {
-  box-shadow: 
-    0 12px 40px rgba(0, 0, 0, 0.5),
-    0 0 20px var(--glow-purple),
-    inset 0 1px 0 rgba(255, 255, 255, 0.1);
-  transform: translateY(-2px);
+/* =======================================
+   FORM CARD & STEP BOX (PMB, dll)
+======================================= */
+.form-card {
+  max-width: 900px;
+  margin: 0 auto 1.8rem;
+  padding: 1.8rem 1.6rem;
 }
 
 .form-card h3 {
-  margin-bottom: 1.5rem;
-  font-size: 1.25rem;
+  margin-bottom: 1.2rem;
+  font-size: 1.15rem;
 }
 
-/* Table dengan hover effects */
+.step-box {
+  max-width: 900px;
+  margin: 0 auto 1.3rem;
+  padding: 1.4rem 1.3rem;
+}
+
+/* =======================================
+   TABLE (jadwal, nilai, tagihan, dsb)
+======================================= */
 .table-container {
   width: 100%;
   overflow-x: auto;
@@ -597,231 +681,100 @@ table {
   font-size: 0.9rem;
 }
 
-th, td {
-  padding: 1rem 0.75rem;
-  text-align: left;
-  border-bottom: 1px solid rgba(51, 65, 85, 0.5);
+th,
+td {
+  padding: 0.75rem 0.8rem;
+  border-bottom: 1px solid rgba(30, 41, 59, 1);
 }
 
 th {
-  background: linear-gradient(135deg, rgba(139, 92, 246, 0.2), rgba(236, 72, 153, 0.2));
-  color: var(--text-main);
-  font-weight: 600;
+  background: rgba(15, 23, 42, 0.98);
+  text-align: left;
   text-transform: uppercase;
-  letter-spacing: 0.05em;
-  font-size: 0.8rem;
-}
-
-tbody tr {
-  transition: all 0.3s ease;
-  background: rgba(15, 23, 42, 0.3);
-}
-
-tbody tr:hover {
-  background: rgba(139, 92, 246, 0.15);
-  transform: scale(1.01);
-  box-shadow: 0 4px 12px rgba(139, 92, 246, 0.2);
+  font-size: 0.78rem;
+  letter-spacing: 0.06em;
 }
 
 tbody tr:nth-child(even) {
-  background: rgba(15, 23, 42, 0.4);
+  background: rgba(15, 23, 42, 0.95);
 }
 
-/* Badges dengan glow effect */
+tbody tr:nth-child(odd) {
+  background: rgba(15, 23, 42, 0.9);
+}
+
+tbody tr:hover {
+  background: rgba(37, 99, 235, 0.45);
+}
+
+/* Badge status */
 .badge {
   display: inline-flex;
   align-items: center;
-  padding: 0.375rem 0.875rem;
-  border-radius: 20px;
-  font-size: 0.75rem;
+  padding: 0.25rem 0.75rem;
+  border-radius: 999px;
+  font-size: 0.7rem;
   font-weight: 600;
   text-transform: uppercase;
-  letter-spacing: 0.05em;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  letter-spacing: 0.06em;
 }
 
 .badge-success {
-  background: linear-gradient(135deg, rgba(16, 185, 129, 0.3), rgba(5, 150, 105, 0.3));
-  color: #6ee7b7;
-  border: 1px solid rgba(16, 185, 129, 0.5);
+  background: rgba(22, 163, 74, 0.35);
+  color: #bbf7d0;
 }
 
 .badge-warning {
-  background: linear-gradient(135deg, rgba(245, 158, 11, 0.3), rgba(217, 119, 6, 0.3));
-  color: #fcd34d;
-  border: 1px solid rgba(245, 158, 11, 0.5);
+  background: rgba(245, 158, 11, 0.35);
+  color: #fed7aa;
 }
 
 .badge-danger {
-  background: linear-gradient(135deg, rgba(239, 68, 68, 0.3), rgba(220, 38, 38, 0.3));
-  color: #fca5a5;
-  border: 1px solid rgba(239, 68, 68, 0.5);
+  background: rgba(239, 68, 68, 0.35);
+  color: #fecaca;
 }
 
-/* Step box */
-.step-box {
-  background: rgba(30, 41, 59, 0.7);
-  backdrop-filter: blur(20px);
-  border-radius: 16px;
-  padding: 1.5rem;
-  border: 1px solid rgba(139, 92, 246, 0.3);
-  color: var(--text-main);
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
-}
-
-/* Footer */
+/* =======================================
+   FOOTER
+======================================= */
 footer {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 2rem 1.5rem;
+  padding: 1.8rem 1.5rem 2.3rem;
   font-size: 0.85rem;
   color: var(--text-soft);
   text-align: center;
-  border-top: 1px solid rgba(148, 163, 184, 0.1);
+  border-top: 1px solid rgba(148, 163, 184, 0.3);
 }
 
-.footer-subtitle {
-  margin-top: 0.5rem;
-  font-size: 0.75rem;
-  opacity: 0.7;
-}
-
-/* ============ LOGIN ROLE TOGGLE ============ */
-.login-role-toggle {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 0.75rem;
-  margin-bottom: 1.5rem;
-  padding: 0.5rem;
-  background: rgba(15, 23, 42, 0.5);
-  border-radius: 12px;
-}
-
-.login-role-toggle button {
-  background: transparent;
-  color: var(--text-soft);
-  border-radius: 8px;
-  border: none;
-  padding: 0.75rem 1rem;
-  font-size: 0.9rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-
-.login-role-toggle button.active {
-  background: linear-gradient(135deg, var(--primary), var(--secondary));
-  color: white;
-  box-shadow: 0 4px 12px var(--glow-purple);
-}
-
-/* Link button */
-.link-btn {
-  display: inline-block;
-  margin-top: 1.5rem;
-  color: var(--primary);
-  font-size: 0.9rem;
-  font-weight: 500;
-  cursor: pointer;
-  position: relative;
-  transition: all 0.3s ease;
-}
-
-.link-btn::after {
-  content: '';
-  position: absolute;
-  bottom: -2px;
-  left: 0;
-  width: 0;
-  height: 2px;
-  background: linear-gradient(90deg, var(--primary), var(--secondary));
-  transition: width 0.3s ease;
-}
-
-.link-btn:hover {
-  color: var(--secondary);
-}
-
-.link-btn:hover::after {
-  width: 100%;
-}
-
-/* ============ RESPONSIVE ============ */
-@media (min-width: 768px) {
-  .home-hero {
-    flex-direction: row;
+/* =======================================
+   RESPONSIVE
+======================================= */
+@media (max-width: 768px) {
+  .header-content {
+    flex-direction: column;
+    align-items: flex-start;
   }
-  
-  .menu-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-}
 
-@media (min-width: 1024px) {
-  .menu-grid {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-  }
-}
-
-@media (max-width: 640px) {
-  .header-title h1 {
-    font-size: 1.05rem;
+  .header-right {
+    align-items: flex-start;
   }
 
   main {
-    padding-top: 1.5rem;
+    padding-top: 1.7rem;
   }
 
+  .login-card,
   .center-box {
-    margin: 2rem 1rem;
-    padding: 2rem 1.5rem;
+    margin: 3.2rem 1rem 2.5rem;
+    padding: 2rem 1.6rem;
   }
 
   .home-title {
-    font-size: 1.75rem;
+    font-size: 1.7rem;
   }
 
   .menu-grid {
     grid-template-columns: 1fr;
   }
-}
-
-/* ============ SCROLL ANIMATIONS ============ */
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.page > * {
-  animation: fadeInUp 0.5s ease backwards;
-}
-
-.page > *:nth-child(1) { animation-delay: 0.1s; }
-.page > *:nth-child(2) { animation-delay: 0.2s; }
-.page > *:nth-child(3) { animation-delay: 0.3s; }
-.page > *:nth-child(4) { animation-delay: 0.4s; }
-
-/* Custom scrollbar */
-::-webkit-scrollbar {
-  width: 10px;
-  height: 10px;
-}
-
-::-webkit-scrollbar-track {
-  background: rgba(15, 23, 42, 0.5);
-}
-
-::-webkit-scrollbar-thumb {
-  background: linear-gradient(135deg, var(--primary), var(--secondary));
-  border-radius: 5px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(135deg, var(--secondary), var(--accent));
 }
